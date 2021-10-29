@@ -5,7 +5,7 @@ interface DrawerOptions {
 }
 
 const defaultDrawerOptions: DrawerOptions = {
-  yOffset: 0.5,
+  yOffset: 1,
   radius: 2,
   delay: 1,
 };
@@ -22,25 +22,30 @@ export class Drawer {
   }
 
   draw() {
-    const radiusPx = window.innerWidth * this.options.radius;
+    const oWidth = this.node.clientWidth;
+    const oHeight = this.node.clientHeight;
+    const curveWidth = oHeight * 0.5;
 
-    this.fillNode.style.position = "absolute";
+    const topLeft = { x: -curveWidth, y: 0 };
+    const topRight = { x: oWidth + curveWidth, y: 0 };
+    const bottomRight = { x: topRight.x, y: oHeight };
+    const bottomLeft = { x: topLeft.x, y: oHeight };
+    const curvePoint = { x: topRight.x * 0.5, y: bottomRight.y * 0.5 };
+
     this.fillNode.style.overflow = "hidden";
-    this.fillNode.style.width = `${radiusPx}px`;
-    this.fillNode.style.height = "0px";
-    this.fillNode.style.bottom = "0px";
-    this.fillNode.style.backgroundColor = "cornflowerblue";
-    this.fillNode.style.borderTopLeftRadius = `${radiusPx}px`;
-    this.fillNode.style.borderTopRightRadius = `${radiusPx}px`;
+    this.fillNode.style.width = `${oWidth}px`;
+    // this.fillNode.style.height = getComputedStyle(this.node).height * 0.5;
+    this.fillNode.style.height = `${oHeight}px`;
+    this.fillNode.style.top = "0px";
+    this.fillNode.style.backgroundColor = "red";
+    this.fillNode.style.clipPath = `path('M ${topLeft.x} ${topLeft.y} L ${topRight.x} ${topRight.y} L ${bottomRight.x} ${bottomRight.y} C ${bottomRight.x} ${bottomRight.y} ${curvePoint.x} ${curvePoint.y} ${bottomLeft.x} ${bottomLeft.y}')`;
 
-    this.node.appendChild(this.fillNode);
+    this.node.prepend(this.fillNode);
   }
 
   handleScroll = () => {
-    const rect = this.node.getBoundingClientRect();
-    const whateverTop = rect.height - rect.top;
-    const offsetPx = this.options.yOffset * rect.height;
-
-    this.fillNode.style.height = `${whateverTop + offsetPx}px`;
+    // const rect = this.node.getBoundingClientRect();
+    // const bottom = Math.max(0, rect.top);
+    // this.fillNode.style.height = `${bottom * this.options.yOffset}px`;
   };
 }
