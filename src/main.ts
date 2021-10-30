@@ -1,20 +1,9 @@
-import { Drawer } from "./Drawer";
+import { CurtainPole } from './CurtainPole';
 
-const allRoundRoundNodes = document.getElementsByClassName("roundround");
-const observer = new IntersectionObserver(doMagic);
+const curtain = document.getElementById('curtain');
 
-function doMagic(entries: IntersectionObserverEntry[]) {
-  const entry = entries[0];
-  if (!entry.isIntersecting) {
-    // remove handler
-    return;
-  }
+const pole = new CurtainPole();
 
-  const drawer = new Drawer(entry.target as HTMLElement);
-  document.addEventListener("scroll", drawer.handleScroll);
-  drawer.draw();
+if (curtain) {
+	pole.hang(curtain);
 }
-
-Array.from(allRoundRoundNodes).forEach((roundRoundNode) => {
-  observer.observe(roundRoundNode);
-});
