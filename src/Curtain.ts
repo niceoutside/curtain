@@ -9,7 +9,7 @@ export class Curtain {
 	private constructor(public node: HTMLElement) {
 		this.node = node;
 		this.node.style.position = 'relative';
-		this.drawer = Drawer.forNode(node);
+		this.drawer = Drawer.forNode(node, { yOffset: 0.5 });
 	}
 
 	static hang(curtain: HTMLElement) {
