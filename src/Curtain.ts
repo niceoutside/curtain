@@ -1,8 +1,10 @@
 import { Drawer } from './Shapes/Drawer';
+import { DrawableType } from './Shapes/Shapes.interfaces';
 
 export class Curtain {
 	private fillNode = document.createElement('div');
 	private drawer: Drawer;
+	private curtainType: DrawableType = 'circle';
 
 	private constructor(public node: HTMLElement) {
 		this.node = node;
@@ -19,6 +21,6 @@ export class Curtain {
 	};
 
 	update = () => {
-		this.drawer.ofType('circle').update();
+		this.drawer.ofType(this.curtainType).update();
 	};
 }
