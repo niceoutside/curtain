@@ -25,6 +25,7 @@ export class Drawer {
 	}
 
 	private initializeCurtainNode = () => {
+		this.curtainNode.style.zIndex = '9999';
 		this.curtainNode.style.position = 'absolute';
 		this.curtainNode.style.top = '0px';
 		this.curtainNode.style.left = '0px';
