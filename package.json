@@ -16,6 +16,9 @@
 		"reveal effect",
 		"curtain"
 	],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"scripts": {
 		"dev": "vite",
 		"build:example": "tsc && vite build",

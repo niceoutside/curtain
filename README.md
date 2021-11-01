@@ -1,5 +1,11 @@
 # Curtain
 
+## Installation
+
+```bash
+npm i @niceoutside/curtain
+```
+
 ## Configuration options
 
 ### yOffset (`number`)
