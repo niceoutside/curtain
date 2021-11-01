@@ -15,6 +15,39 @@
 npm i @niceoutside/curtain
 ```
 
+## Usage
+
+### Add a curtain
+
+To add a curtain reveal effect to a node, you have to attach a curtain to the HTML node.
+
+```ts
+import { CurtainPole } from './CurtainPole';
+
+const pole = new CurtainPole();
+const curtain = document.getElementById('curtain');
+
+pole.hang(curtain, { color: 'green' });
+```
+
+### Remove a curtain
+
+You can remove a curtain by calling the following method:
+
+```ts
+const curtain = document.getElementById('curtain');
+
+pole.takeDown(curtain);
+```
+
+### Clean up
+
+To remove everything at once, you can call the `destroy` method:
+
+```ts
+pole.destroy();
+```
+
 ## Configuration options
 
 ### yOffset (`number`)

@@ -23,4 +23,8 @@ export class Curtain {
 	update = () => {
 		this.drawer.update();
 	};
+
+	takeDown = () => {
+		this.drawer.destroy();
+	};
 }

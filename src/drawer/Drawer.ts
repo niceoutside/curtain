@@ -71,4 +71,8 @@ export class Drawer {
 
 		return this;
 	};
+
+	destroy = () => {
+		this.curtainNode.remove();
+	};
 }

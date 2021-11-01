@@ -48,4 +48,22 @@ export class CurtainPole {
 		this.curtains.push(Curtain.hang(node, options));
 		this.observer.observe(node);
 	};
+
+	takeDown = (node: HTMLElement) => {
+		const curtain = this.curtains.find((c) => c.node === node);
+		if (!curtain) {
+			console.warn('Curtain not hanging...');
+			return;
+		}
+
+		this.observer.unobserve(node);
+		curtain.takeDown();
+		this.curtains = this.curtains.filter((c) => c.node !== node);
+	};
+
+	destroy = () => {
+		this.observer.disconnect();
+		this.curtains.forEach((curtain) => curtain.takeDown());
+		this.curtains = [];
+	};
 }
