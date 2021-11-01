@@ -8,7 +8,8 @@ const drawableMap: Record<DrawableType, DrawableImplementation> = {
 };
 
 export const defaultDrawerOptions: DrawerOptions = {
-	yOffset: 0
+	yOffset: 0,
+	color: 'black'
 };
 
 export function getDrawable(type: DrawableType) {

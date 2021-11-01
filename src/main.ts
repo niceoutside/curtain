@@ -5,5 +5,5 @@ const curtain = document.getElementById('curtain');
 const pole = new CurtainPole();
 
 if (curtain) {
-	pole.hang(curtain);
+	pole.hang(curtain, { color: 'green' });
 }

@@ -16,6 +16,10 @@ export class Drawer {
 		this.curtainNode = document.createElement('div');
 		this.drawable = getDrawable(type);
 
+		if (this.options.color) {
+			this.drawable.color = this.options.color;
+		}
+
 		this.initializeCurtainNode();
 	}
 
@@ -27,11 +31,11 @@ export class Drawer {
 		this.curtainNode.style.overflow = 'hidden';
 		this.curtainNode.style.width = `${this.revealNode.clientWidth}px`;
 		this.curtainNode.style.height = `${this.revealNode.clientHeight}px`;
-		this.curtainNode.style.backgroundColor = 'red';
 
 		this.revealNode.style.position = 'relative';
 		this.revealNode.prepend(this.curtainNode);
-		this.draw(this.revealNode.clientWidth, this.revealNode.clientHeight);
+
+		this.update();
 	};
 
 	static forNode(
@@ -48,16 +52,21 @@ export class Drawer {
 		return this.update();
 	};
 
-	private draw = (width: number, height: number) => {
-		const drawableStyle = this.drawable.getNodeStyle(width, height);
+	getDrawable = (): Drawable => this.drawable;
+
+	private draw = (width: number, height: number, offsetTop: number) => {
+		const drawableStyle = this.drawable.getNodeStyle(width, height, offsetTop);
 
 		applyStyleOnTop(this.curtainNode, drawableStyle);
 	};
 
 	update = (): Drawer => {
-		const rect = this.revealNode.getBoundingClientRect();
-		const offsetTop = rect.top + rect.height * this.options.yOffset;
-		this.draw(rect.width, offsetTop);
+		requestAnimationFrame(() => {
+			const rect = this.revealNode.getBoundingClientRect();
+			const offsetTop = rect.top + rect.height * this.options.yOffset;
+
+			this.draw(rect.width, rect.height, offsetTop);
+		});
 
 		return this;
 	};

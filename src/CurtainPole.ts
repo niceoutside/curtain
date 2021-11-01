@@ -1,4 +1,4 @@
-import { Curtain } from './Curtain';
+import { Curtain, CurtainOptions } from './Curtain';
 import { DrawableType } from './Shapes/Shapes.interfaces';
 
 export interface CurtainPoleOptions {
@@ -39,14 +39,14 @@ export class CurtainPole {
 		curtain.update();
 	};
 
-	hang = (node: HTMLElement, type: DrawableType = 'circle') => {
+	hang = (node: HTMLElement, options: CurtainOptions = {}) => {
 		const curtain = this.curtains.find((c) => c.node === node);
 		if (curtain) {
 			console.warn('Curtain already hanging...');
 			return;
 		}
 
-		this.curtains.push(Curtain.hang(node, type));
+		this.curtains.push(Curtain.hang(node, options));
 		this.observer.observe(node);
 	};
 }
