@@ -1,5 +1,14 @@
 # Curtain
 
+## TODOs
+
+- [ ] move from GitHub to npm registry for version `1.0.0`
+- [ ] create supporting packages
+  - [ ] svelte
+  - [ ] react
+  - [ ] vue
+  - [ ] angular
+
 ## Installation
 
 ```bash
