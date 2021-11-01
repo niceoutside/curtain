@@ -1,4 +1,5 @@
 import { Curtain } from './Curtain';
+import { DrawableType } from './Shapes/Shapes.interfaces';
 
 export interface CurtainPoleOptions {
 	scrollContainer?: Document | HTMLElement;
@@ -38,14 +39,14 @@ export class CurtainPole {
 		curtain.update();
 	};
 
-	hang = (node: HTMLElement) => {
+	hang = (node: HTMLElement, type: DrawableType = 'circle') => {
 		const curtain = this.curtains.find((c) => c.node === node);
 		if (curtain) {
 			console.warn('Curtain already hanging...');
 			return;
 		}
 
-		this.curtains.push(Curtain.hang(node));
+		this.curtains.push(Curtain.hang(node, type));
 		this.observer.observe(node);
 	};
 }

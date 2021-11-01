@@ -1,7 +1,7 @@
 import { Drawable } from './Shapes.interfaces';
 
-export class Circle implements Drawable {
-	getNodeStyle(nodeWidth: number, nodeHeight: number) {
+export class Circle extends Drawable {
+	getNodeStyle = (nodeWidth: number, nodeHeight: number) => {
 		const curveWidth = nodeHeight * 0.5;
 
 		const topLeft = { x: -curveWidth, y: 0 };
@@ -18,5 +18,5 @@ export class Circle implements Drawable {
 		};
 
 		return style;
-	}
+	};
 }
