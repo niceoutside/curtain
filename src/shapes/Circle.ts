@@ -1,4 +1,4 @@
-import { Drawable } from './Shapes.interfaces';
+import { Drawable } from '../drawer/Drawable';
 
 export class Circle extends Drawable {
 	getNodeStyle = (width: number, height: number, offsetTop: number) => {

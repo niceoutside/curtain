@@ -1,5 +1,6 @@
-import { Circle } from '../Shapes/Circle';
-import { Drawable, DrawableType, DrawerOptions } from '../Shapes/Shapes.interfaces';
+import { Circle } from '../shapes/Circle';
+import { Drawable, DrawableType } from '../drawer/Drawable';
+import { DrawerOptions } from '../drawer/types';
 
 type DrawableImplementation = { new (): Drawable } & typeof Drawable;
 

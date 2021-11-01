@@ -1,5 +1,4 @@
 import { Curtain, CurtainOptions } from './Curtain';
-import { DrawableType } from './Shapes/Shapes.interfaces';
 
 export interface CurtainPoleOptions {
 	scrollContainer?: Document | HTMLElement;

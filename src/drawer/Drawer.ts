@@ -1,6 +1,7 @@
 import { defaultDrawerOptions, getDrawable } from '../utils/drawer';
 import { applyStyleOnTop } from '../utils/style';
-import { Drawable, DrawableType, DrawerOptions } from './Shapes.interfaces';
+import { Drawable, DrawableType } from './Drawable';
+import { DrawerOptions } from './types';
 
 export class Drawer {
 	private curtainNode: HTMLElement;

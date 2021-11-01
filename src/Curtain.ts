@@ -1,5 +1,5 @@
-import { Drawer } from './Shapes/Drawer';
-import { DrawableType } from './Shapes/Shapes.interfaces';
+import { DrawableType } from './drawer/Drawable';
+import { Drawer } from './drawer/Drawer';
 
 export interface CurtainOptions {
 	type?: DrawableType;

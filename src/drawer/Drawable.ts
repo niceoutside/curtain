@@ -9,8 +9,3 @@ export abstract class Drawable {
 		offsetTop: number
 	) => Partial<CSSStyleDeclaration>;
 }
-
-export interface DrawerOptions {
-	yOffset: number;
-	color: CSSStyleDeclaration['color'];
-}
