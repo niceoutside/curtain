@@ -2,9 +2,9 @@
 
 ## TODOs
 
-- [ ] move from GitHub to npm registry for version `1.0.0`
+- [x] move from GitHub to npm registry for version `1.0.0`
 - [ ] create supporting packages
-  - [ ] svelte
+  - [x] svelte (not needed, can be used directly)
   - [ ] react
   - [ ] vue
   - [ ] angular
