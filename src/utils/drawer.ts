@@ -1,10 +1,23 @@
-import { Circle } from '../Shapes/Circle';
-import { Drawable, DrawableType, DrawerOptions } from '../Shapes/Shapes.interfaces';
+import { Circle } from '../shapes/Circle';
+import { Drawable, DrawableType } from '../drawer/Drawable';
+import { DrawerOptions } from '../drawer/types';
 
-export const drawableMap: Record<DrawableType, Drawable> = {
-	circle: new Circle()
+type DrawableImplementation = { new (): Drawable } & typeof Drawable;
+
+const drawableMap: Record<DrawableType, DrawableImplementation> = {
+	circle: Circle
 };
 
 export const defaultDrawerOptions: DrawerOptions = {
-	yOffset: 0
+	yOffset: 0,
+	color: 'black'
 };
+
+export function getDrawable(type: DrawableType) {
+	const drawable = drawableMap[type];
+	if (!drawable) {
+		throw new Error(`No drawable found for type ${type}`);
+	}
+
+	return new drawable();
+}

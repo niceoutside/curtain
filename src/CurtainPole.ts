@@ -1,4 +1,4 @@
-import { Curtain } from './Curtain';
+import { Curtain, CurtainOptions } from './Curtain';
 
 export interface CurtainPoleOptions {
 	scrollContainer?: Document | HTMLElement;
@@ -38,14 +38,32 @@ export class CurtainPole {
 		curtain.update();
 	};
 
-	hang = (node: HTMLElement) => {
+	hang = (node: HTMLElement, options: CurtainOptions = {}) => {
 		const curtain = this.curtains.find((c) => c.node === node);
 		if (curtain) {
 			console.warn('Curtain already hanging...');
 			return;
 		}
 
-		this.curtains.push(Curtain.hang(node));
+		this.curtains.push(Curtain.hang(node, options));
 		this.observer.observe(node);
+	};
+
+	takeDown = (node: HTMLElement) => {
+		const curtain = this.curtains.find((c) => c.node === node);
+		if (!curtain) {
+			console.warn('Curtain not hanging...');
+			return;
+		}
+
+		this.observer.unobserve(node);
+		curtain.takeDown();
+		this.curtains = this.curtains.filter((c) => c.node !== node);
+	};
+
+	destroy = () => {
+		this.observer.disconnect();
+		this.curtains.forEach((curtain) => curtain.takeDown());
+		this.curtains = [];
 	};
 }

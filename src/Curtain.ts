@@ -1,26 +1,31 @@
-import { Drawer } from './Shapes/Drawer';
-import { DrawableType } from './Shapes/Shapes.interfaces';
+import { DrawableType } from './drawer/Drawable';
+import { Drawer } from './drawer/Drawer';
+
+export interface CurtainOptions {
+	type?: DrawableType;
+	color?: string;
+	yOffset?: number;
+}
 
 export class Curtain {
-	private fillNode = document.createElement('div');
 	private drawer: Drawer;
-	private curtainType: DrawableType = 'circle';
 
-	private constructor(public node: HTMLElement) {
+	private constructor(public node: HTMLElement, options: CurtainOptions) {
+		const { color, type = 'circle', yOffset = 0 } = options;
+
 		this.node = node;
-		this.node.style.position = 'relative';
-		this.drawer = Drawer.forNode(node, { yOffset: 0.5 });
+		this.drawer = Drawer.forNode(node, type, { yOffset, color });
 	}
 
-	static hang(curtain: HTMLElement) {
-		return new Curtain(curtain);
+	static hang(curtain: HTMLElement, options: CurtainOptions) {
+		return new Curtain(curtain, options);
 	}
-
-	takeDown = () => {
-		this.fillNode?.remove();
-	};
 
 	update = () => {
-		this.drawer.ofType(this.curtainType).update();
+		this.drawer.update();
+	};
+
+	takeDown = () => {
+		this.drawer.destroy();
 	};
 }
