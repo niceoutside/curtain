@@ -10,7 +10,13 @@ const drawableMap: Record<DrawableType, DrawableImplementation> = {
 
 export const defaultDrawerOptions: DrawerOptions = {
 	yOffset: 0,
-	color: 'black'
+	color: 'black',
+	anchors: {
+		top: '0',
+		left: '0',
+		right: '0',
+		bottom: '0'
+	}
 };
 
 export function getDrawable(type: DrawableType) {

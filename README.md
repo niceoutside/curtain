@@ -70,3 +70,11 @@ _Example 2_: If the factor is `0.5` the curtain will still hang 50% when the cor
 ```ts
 pole.hang(curtain, { yOffset: 0.5 });
 ```
+
+### anchors
+
+It is possible to shift the anchor points of the curtain:
+
+```ts
+pole.hang(curtain, { anchors: { top: '10px', bottom: '10px', left: '5px', right: '5px' });
+```

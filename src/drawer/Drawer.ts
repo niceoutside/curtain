@@ -27,10 +27,10 @@ export class Drawer {
 	private initializeCurtainNode = () => {
 		this.curtainNode.style.zIndex = '30';
 		this.curtainNode.style.position = 'absolute';
-		this.curtainNode.style.top = '0';
-		this.curtainNode.style.left = '0';
-		this.curtainNode.style.right = '0';
-		this.curtainNode.style.bottom = '0';
+		this.curtainNode.style.top = this.options.anchors.top || '0';
+		this.curtainNode.style.left = this.options.anchors.left || '0';
+		this.curtainNode.style.right = this.options.anchors.right || '0';
+		this.curtainNode.style.bottom = this.options.anchors.bottom || '0';
 		this.curtainNode.style.overflow = 'hidden';
 		this.curtainNode.style.width = `${this.revealNode.clientWidth}px`;
 		this.curtainNode.style.height = `${this.revealNode.clientHeight}px`;

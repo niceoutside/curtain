@@ -1,20 +1,22 @@
 import { DrawableType } from './drawer/Drawable';
 import { Drawer } from './drawer/Drawer';
+import { DrawerOptions } from './drawer/types';
 
 export interface CurtainOptions {
 	type?: DrawableType;
-	color?: string;
-	yOffset?: number;
+	color?: DrawerOptions['color'];
+	yOffset?: DrawerOptions['yOffset'];
+	anchors?: DrawerOptions['anchors'];
 }
 
 export class Curtain {
 	private drawer: Drawer;
 
 	private constructor(public node: HTMLElement, options: CurtainOptions) {
-		const { color, type = 'circle', yOffset = 0 } = options;
+		const { color, type = 'circle', yOffset = 0, anchors = {} } = options;
 
 		this.node = node;
-		this.drawer = Drawer.forNode(node, type, { yOffset, color });
+		this.drawer = Drawer.forNode(node, type, { yOffset, color, anchors });
 	}
 
 	static hang(curtain: HTMLElement, options: CurtainOptions) {
