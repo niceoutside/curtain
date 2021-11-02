@@ -18,7 +18,6 @@ export class Circle extends Drawable {
 		return {
 			height: `${offsetTop}px`,
 			width: '100%',
-			top: '0',
 			backgroundColor: this.color,
 			clipPath: `path('M ${topLeft.x} ${topLeft.y} L ${topRight.x} ${topRight.y} L ${bottomRight.x} ${bottomRight.y} C ${bottomRight.x} ${bottomRight.y} ${curvePoint.x} ${curvePoint.y} ${bottomLeft.x} ${bottomLeft.y}')`
 		};
