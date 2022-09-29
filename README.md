@@ -2,7 +2,7 @@
 
 ## TODOs
 
-- [x] move from GitHub to npm registry for version `1.0.0`
+- [ ] use transform/translate for better performance
 - [ ] create supporting packages
   - [x] svelte (not needed, can be used directly)
   - [ ] react

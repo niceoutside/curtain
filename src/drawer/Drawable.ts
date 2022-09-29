@@ -1,4 +1,4 @@
-export type DrawableType = 'circle';
+export type DrawableType = 'circle' | 'rect';
 
 export abstract class Drawable {
 	public color: CSSStyleDeclaration['color'] = 'black';

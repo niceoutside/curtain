@@ -5,23 +5,31 @@ import { DrawerOptions } from './types';
 
 export class Drawer {
 	private curtainNode: HTMLElement;
-	private drawable: Drawable;
-	private options: DrawerOptions = defaultDrawerOptions;
+	private drawable: Drawable | null = null;
+	private options: DrawerOptions;
+
+	private async setDrawable(type: DrawableType, color?: CSSStyleDeclaration['color']) {
+		this.drawable = await getDrawable(type);
+
+		if (color) {
+			this.drawable.color = color;
+		}
+	}
+
+	private async init(type: DrawableType, color?: CSSStyleDeclaration['color']) {
+		await this.setDrawable(type, color);
+		this.initializeCurtainNode();
+	}
 
 	private constructor(
 		private revealNode: HTMLElement,
 		type: DrawableType,
 		options: Partial<DrawerOptions> = {}
 	) {
-		this.options = { ...this.options, ...options };
+		this.options = { ...defaultDrawerOptions, ...options };
 		this.curtainNode = document.createElement('div');
-		this.drawable = getDrawable(type);
 
-		if (this.options.color) {
-			this.drawable.color = this.options.color;
-		}
-
-		this.initializeCurtainNode();
+		this.init(type, options.color);
 	}
 
 	private initializeCurtainNode = () => {
@@ -49,15 +57,19 @@ export class Drawer {
 		return new Drawer(node, type, options);
 	}
 
-	setType = (type: DrawableType) => {
-		this.drawable = getDrawable(type);
+	setType = async (type: DrawableType) => {
+		this.drawable = await getDrawable(type);
 
 		return this.update();
 	};
 
-	getDrawable = (): Drawable => this.drawable;
+	getDrawable = async () => this.drawable;
 
 	private draw = (width: number, height: number, offsetTop: number) => {
+		if (!this.drawable) {
+			throw new Error('Drawable not set correctly.');
+		}
+
 		const drawableStyle = this.drawable.getNodeStyle(width, height, offsetTop);
 
 		applyStyleOnTop(this.curtainNode, drawableStyle);

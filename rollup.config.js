@@ -17,7 +17,8 @@ export default {
 		utils_drawer: 'src/utils/drawer.ts',
 		drawer: 'src/drawer/Drawer.ts',
 		drawable: 'src/drawer/Drawable.ts',
-		shapes_circle: 'src/shapes/Circle.ts'
+		shapes_circle: 'src/shapes/Circle.ts',
+		shapes_rect: 'src/shapes/Rect.ts'
 	},
 	output: [
 		{

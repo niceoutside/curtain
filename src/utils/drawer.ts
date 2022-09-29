@@ -1,11 +1,11 @@
-import { Circle } from '../shapes/Circle';
 import { Drawable, DrawableType } from '../drawer/Drawable';
 import { DrawerOptions } from '../drawer/types';
 
 type DrawableImplementation = { new (): Drawable } & typeof Drawable;
 
-const drawableMap: Record<DrawableType, DrawableImplementation> = {
-	circle: Circle
+const drawableImport: Record<DrawableType, () => Promise<DrawableImplementation>> = {
+	circle: async () => (await import('../shapes/Circle')).Circle,
+	rect: async () => (await import('../shapes/Rect')).Rect
 };
 
 export const defaultDrawerOptions: DrawerOptions = {
@@ -19,8 +19,8 @@ export const defaultDrawerOptions: DrawerOptions = {
 	}
 };
 
-export function getDrawable(type: DrawableType) {
-	const drawable = drawableMap[type];
+export async function getDrawable(type: DrawableType) {
+	const drawable = await drawableImport[type]();
 	if (!drawable) {
 		throw new Error(`No drawable found for type ${type}`);
 	}
