@@ -11,6 +11,7 @@ const drawableImport: Record<DrawableType, () => Promise<DrawableImplementation>
 export const defaultDrawerOptions: DrawerOptions = {
 	yOffset: 0,
 	color: 'black',
+	zIndex: '30',
 	anchors: {
 		top: '0',
 		left: '0',
