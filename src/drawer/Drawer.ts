@@ -78,7 +78,8 @@ export class Drawer {
 	update = (): Drawer => {
 		requestAnimationFrame(() => {
 			const rect = this.revealNode.getBoundingClientRect();
-			const offsetTop = rect.top + rect.height * this.options.yOffset;
+			const offsetTop =
+				rect.top + rect.height * this.options.yOffset * (1 - this.options.endOffset);
 
 			this.draw(rect.width, rect.height, offsetTop);
 		});

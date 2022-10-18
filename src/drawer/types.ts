@@ -1,5 +1,6 @@
 export interface DrawerOptions {
 	yOffset: number;
+	endOffset: number;
 	color: CSSStyleDeclaration['color'];
 	zIndex: CSSStyleDeclaration['zIndex'];
 	anchors: {

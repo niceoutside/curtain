@@ -8,7 +8,8 @@ if (curtain) {
 	pole.hang(curtain, {
 		type: 'rect',
 		color: 'green',
-		yOffset: 0,
+		yOffset: 0.25,
+		endOffset: 1.25,
 		anchors: { top: '-1px' }
 	});
 }

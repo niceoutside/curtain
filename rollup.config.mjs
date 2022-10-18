@@ -46,5 +46,10 @@ export default {
 			comments: false
 		}),
 		terser()
-	]
+	],
+	treeshake: {
+		moduleSideEffects: false,
+		propertyReadSideEffects: false,
+		tryCatchDeoptimization: false
+	}
 };
