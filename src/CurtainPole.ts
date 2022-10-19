@@ -22,8 +22,10 @@ export class CurtainPole {
 
 		if (entry.isIntersecting) {
 			this.updateHandler = this.handleUpdate(entry);
-			this.scrollContainer.addEventListener('scroll', this.updateHandler);
-			window.addEventListener('resize', this.updateHandler);
+			if (this.updateHandler) {
+				this.scrollContainer.addEventListener('scroll', this.updateHandler);
+				window.addEventListener('resize', this.updateHandler);
+			}
 		} else if (this.updateHandler) {
 			this.scrollContainer.removeEventListener('scroll', this.updateHandler);
 			window.removeEventListener('resize', this.updateHandler);
@@ -31,12 +33,12 @@ export class CurtainPole {
 		}
 	};
 
-	private handleUpdate = (entry: IntersectionObserverEntry) => () => {
+	private handleUpdate = (entry: IntersectionObserverEntry) => {
 		const curtain = this.curtains.find((c) => c.node === entry.target);
 		if (!curtain) {
-			return;
+			return null;
 		}
-		curtain.update();
+		return () => curtain.update();
 	};
 
 	hang = (node: HTMLElement, options: CurtainOptions = {}) => {
